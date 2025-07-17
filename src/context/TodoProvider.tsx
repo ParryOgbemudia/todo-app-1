@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { Todo, TodoContextType } from "../type";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 // Context
 const TodoContext = createContext<TodoContextType | null>(null);
@@ -18,7 +19,7 @@ export default function TodoProvider({
   const [inputTodo, setInputTodo] = useState("");
   const [error, setError] = useState("");
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated } = useKindeAuth();
 
   //store to localstorage
   useEffect(() => {
@@ -128,8 +129,6 @@ export default function TodoProvider({
         numberOfCompletedTodos,
         numberOfTodos,
         editTodo,
-        isAuthenticated,
-        setIsAuthenticated,
       }}
     >
       {children}

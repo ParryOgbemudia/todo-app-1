@@ -1,9 +1,10 @@
 import { useTodoContext } from "../context/TodoProvider";
 import Button from "./Button";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 export default function AddTodoForm() {
-  const { setInputTodo, error, inputTodo, addTodo, todos, isAuthenticated } =
-    useTodoContext();
+  const { setInputTodo, error, inputTodo, addTodo, todos } = useTodoContext();
+  const { isAuthenticated } = useKindeAuth();
 
   const isLockedOut = !isAuthenticated && todos.length >= 4;
 
