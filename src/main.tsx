@@ -9,8 +9,16 @@ createRoot(document.getElementById("root")!).render(
     <KindeProvider
       clientId="e49db595acd644398a6defe8cfcdee28"
       domain="https://i7faculty.kinde.com"
-      redirectUri="http://localhost:5173"
-      logoutUri="http://localhost:5173"
+      redirectUri={
+        process.env.NODE_ENV === "production"
+          ? "https://todo-app-1-topaz.vercel.app/"
+          : "http://localhost:5173"
+      }
+      logoutUri={
+        process.env.NODE_ENV === "production"
+          ? "https://todo-app-1-topaz.vercel.app/"
+          : "http://localhost:5173"
+      }
     >
       <App />
     </KindeProvider>
